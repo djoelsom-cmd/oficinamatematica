@@ -1,2 +1,231 @@
-# oficinamatematica
-MAT
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Oficina de Matemática - Inscrição</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+margin:0;
+background:#0b2745;
+color:white;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:#123b63;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.header img{
+width:100%;
+}
+
+.info{
+padding:30px;
+text-align:center;
+}
+
+.info h1{
+font-size:36px;
+margin-bottom:10px;
+}
+
+.details{
+background:#081a2c;
+padding:20px;
+margin-top:20px;
+font-size:18px;
+}
+
+.counter{
+background:#102f50;
+padding:15px;
+margin-top:20px;
+border-radius:8px;
+font-size:20px;
+}
+
+.form{
+padding:30px;
+}
+
+input, select{
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:18px;
+border-radius:6px;
+border:none;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#ffb400;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ffd24d;
+}
+
+.success{
+display:none;
+background:#1c7c3c;
+padding:15px;
+margin-top:15px;
+text-align:center;
+}
+
+.admin{
+padding:30px;
+background:#0a1e33;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+td,th{
+border:1px solid rgba(255,255,255,0.2);
+padding:8px;
+text-align:left;
+}
+
+.footer{
+text-align:center;
+padding:20px;
+opacity:0.8;
+}
+
+.export{
+margin-top:10px;
+background:#4caf50;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<img src="capa_oficina.png">
+</div>
+
+<div class="info">
+
+<h1>OFICINA DE MATEMÁTICA</h1>
+<h2>Derivadas de Funções – Preparação para Exame</h2>
+
+<div class="details">
+
+📅 <b>Data:</b> 23 de Março de 2026 <br>
+📍 <b>Local:</b> ISCED-LUANDA <br>
+⏰ <b>Hora:</b> 13:00
+
+</div>
+
+<p>
+Participe nesta oficina intensiva focada em derivadas de funções,  
+com resolução de exercícios típicos de exame e estratégias para melhorar o desempenho.
+</p>
+
+<div class="counter">
+🎟️ Vagas disponíveis: <b id="vagasRestantes"></b>
+</div>
+
+</div>
+
+<div class="form">
+
+<h2>Inscrição</h2>
+
+<form id="formInscricao">
+
+<label>Nome completo</label>
+<input type="text" id="nome" required>
+
+<label>Telefone / WhatsApp</label>
+<input type="text" id="telefone" required>
+
+<label>Email</label>
+<input type="email" id="email" required>
+
+<label>Nível Acadêmico</label>
+<select id="nivel" required>
+
+<option value="">Selecionar</option>
+<option>10ª Classe</option>
+<option>11ª Classe</option>
+<option>12ª Classe</option>
+<option>13ª Classe</option>
+<option>Universitário</option>
+
+</select>
+
+<button type="submit">Confirmar Presença</button>
+
+</form>
+
+<div class="success" id="sucesso">
+✅ Registada com sucesso!
+</div>
+
+</div>
+
+<div class="footer">
+Oficina de Matemática • JOELSON NEXOS • 2026
+</div>
+
+</div>
+
+<script>
+
+const API_URL = "AKfycby2Fqx2eu5B0fArgTTS03Zs9V-_gqK-Qd_IkJfCwQQUK5R3oIpsp_0FEags_WvjxDbt";
+
+document.getElementById("formInscricao").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let form = e.target;
+
+let data = {
+
+nome: form[0].value,
+telefone: form[1].value,
+email: form[2].value,
+nivel: form[3].value
+
+};
+
+fetch(API_URL,{
+method:"POST",
+body:JSON.stringify(data)
+})
+.then(res=>res.json())
+.then(res=>{
+
+document.getElementById("sucesso").style.display="block";
+
+form.reset();
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
